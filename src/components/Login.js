@@ -1,13 +1,17 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidation } from "../utils/validate";
+// firebase imports
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
-  const [isSignInForm, setIsSignInForm] = useState(false);
+  const [isSignUpForm, setIsSignInForm] = useState(false);
   const [errorMessage, setErrorMessage] = useState({
     name: "",
     email: "",
     password: "",
+    signUp: "",
   });
 
   const nameRef = useRef(null);
@@ -16,17 +20,49 @@ const Login = () => {
 
   const handleButtonClick = () => {
     setErrorMessage({
-      name: isSignInForm
+      name: isSignUpForm
         ? checkValidation(nameRef.current.value, null, null) // nameRef.current refers to the input DOM element, and .value provides the current value of that input box.
         : "",
       email: checkValidation(null, emailRef.current.value, null),
       password: checkValidation(null, null, passwordRef.current.value),
     });
+
+    if (
+      // if errormessage contains some strings then return, else proceed
+      errorMessage.name !== "" ||
+      errorMessage.email !== "" ||
+      errorMessage.password !== ""
+    )
+      return;
+
+    if (isSignUpForm) {
+      // if there is Sign Up form
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage({
+            signUp: `${errorCode} - ${errorMessage}`,
+          });
+        });
+    } else {
+      // if there is Sign In form
+    }
   };
 
   const toggleSignInForm = () => {
-    setIsSignInForm(!isSignInForm);
+    setIsSignInForm(!isSignUpForm);
   };
+
   return (
     <div className="relative min-h-screen font-parkinsans">
       <Header />
@@ -42,9 +78,9 @@ const Login = () => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 bg-black bg-opacity-70 p-8 rounded-lg shadow-lg"
       >
         <h1 className="text-2xl font-extrabold mb-4 text-white">
-          {!isSignInForm ? "Sign In" : "Sign Up"}
+          {!isSignUpForm ? "Sign In" : "Sign Up"}
         </h1>
-        {isSignInForm && (
+        {isSignUpForm && (
           <input
             ref={nameRef}
             type="text"
@@ -73,19 +109,22 @@ const Login = () => {
         <p className="mb-4 mt-1 italic text-xs text-red-600">
           {errorMessage.password}
         </p>
+        <p className="mb-4 mt-1 italic text-xs text-red-600">
+          {errorMessage.signUp}
+        </p>
         <button
           onClick={handleButtonClick}
           className="block w-full bg-yellow-300 text-black p-2 mb-4 rounded font-bold"
         >
-          {isSignInForm ? "Sign Up" : "Sign In"}
+          {isSignUpForm ? "Sign Up" : "Sign In"}
         </button>
         <p className="text-xs text-white">
-          {isSignInForm ? "Already a user!" : "New to Movie Box?"}
+          {isSignUpForm ? "Already a user!" : "New to Movie Box?"}
           <span
             className="underline font-semibold text-yellow-300 cursor-pointer ml-1"
             onClick={toggleSignInForm}
           >
-            {isSignInForm ? "Sign In" : "Sign Up"}
+            {isSignUpForm ? "Sign In" : "Sign Up"}
           </span>
         </p>
       </form>
@@ -94,14 +133,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// Notes:
-
-// useRef Hook:
-
-/* 
-Here, `useRef` provides a reference to a DOM element or a mutable value that persists across renders. When used with an input box, the ref object has a current property, which points to the DOM element. For an input box, ref.current.value contains the current value of the input field.
-
-- `useRef` does not just store the value of the input box; it holds a reference to the DOM element.
-- `useRef` is mutable and does not trigger re-renders when updated. 
-*/
