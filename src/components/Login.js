@@ -2,7 +2,10 @@ import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidation } from "../utils/validate";
 // firebase imports
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
 
 const Login = () => {
@@ -12,6 +15,7 @@ const Login = () => {
     email: "",
     password: "",
     signUp: "",
+    signIn: "",
   });
 
   const nameRef = useRef(null);
@@ -50,12 +54,31 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage({
-            signUp: `${errorCode} - ${errorMessage}`,
-          });
+          setErrorMessage((prev) => ({
+            ...prev, // Keep the current errors
+            signUp: `${errorCode} - ${errorMessage}`, // Update only the signUp error
+          }));
         });
     } else {
       // if there is Sign In form
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage((prev) => ({
+            ...prev, // Keep the current errors
+            signIn: `${errorCode} - ${errorMessage}`, // Update only the signUp error
+          }));
+        });
     }
   };
 
@@ -110,7 +133,7 @@ const Login = () => {
           {errorMessage.password}
         </p>
         <p className="mb-4 mt-1 italic text-xs text-red-600">
-          {errorMessage.signUp}
+          {isSignUpForm ? errorMessage.signUp : errorMessage.signIn}
         </p>
         <button
           onClick={handleButtonClick}
