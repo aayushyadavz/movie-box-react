@@ -30,6 +30,15 @@
      - Click **Save**.
 
 2. **Firebase API:**
+
    - `onAuthStateChanged`:
+
      - This API is triggered automatically whenever the authentication state changes (e.g., sign-in, sign-up, sign-out).
      - Acts like an event listener and can be used at the root level of the app for global authentication management.
+
+   - `signOut`:
+
+     - Used to log out the currently authenticated user.
+
+   - `updateProfile`:
+     - Allows updating the user's profile information, such as display name and profile picture.
