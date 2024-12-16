@@ -113,16 +113,16 @@ const Login = () => {
   return (
     <div className="relative min-h-screen font-parkinsans bg-black">
       <Header />
-      <div className="relative">
+      <div className="relative h-screen">
         <img
           src="https://www.plex.tv/wp-content/uploads/2024/01/Watch-Free-Hero-2048x1152-3.png"
           alt="Home page background images"
-          className="w-full h-full object-cover hidden md:block"
+          className="w-full h-full object-cover"
         />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-1/2 md:w-1/4 md:bg-black bg-yellow-300 bg-opacity-70 p-5 sm:py-10 sm:px-9 md:p-8 rounded-lg shadow-lg"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-1/2 md:w-1/4 bg-black bg-opacity-70 p-5 sm:py-10 sm:px-9 md:p-8 rounded-lg shadow-lg"
       >
         <h1 className="text-2xl font-extrabold mb-4 text-white">
           {!isSignUpForm ? "Sign In" : "Sign Up"}
@@ -161,14 +161,14 @@ const Login = () => {
         </p>
         <button
           onClick={handleButtonClick}
-          className="block w-full bg-black md:bg-yellow-300 text-yellow-300 md:text-black p-2 mb-4 rounded font-bold"
+          className="block w-full bg-yellow-300 text-black p-2 mb-4 rounded font-bold"
         >
           {isSignUpForm ? "Sign Up" : "Sign In"}
         </button>
         <p className="text-xs text-white">
           {isSignUpForm ? "Already a user!" : "New to Movie Box?"}
           <span
-            className="underline font-semibold text-black md:text-yellow-300 cursor-pointer ml-1"
+            className="underline font-semibold text-yellow-300 cursor-pointer ml-1"
             onClick={toggleSignInForm}
           >
             {isSignUpForm ? "Sign In" : "Sign Up"}
