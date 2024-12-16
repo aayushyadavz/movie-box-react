@@ -115,7 +115,7 @@ const Login = () => {
       <Header />
       <div className="relative h-screen">
         <img
-          src="https://www.plex.tv/wp-content/uploads/2024/01/Watch-Free-Hero-2048x1152-3.png"
+          src="https://www.plex.tv/wp-content/uploads/2024/01/Watch-Free-Hero-2048x1152-3.png?cache-bypass=true"
           alt="Home page background images"
           className="w-full h-full object-cover"
         />
