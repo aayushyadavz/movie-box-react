@@ -4,6 +4,7 @@ import { auth } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
+import { LOGO } from "../utils/constants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Header = () => {
     <div className="flex justify-between absolute w-full px-3 sm:px-5 z-10 py-2 font-parkinsans">
       <img
         className="w-14 sm:w-20 md:w-16 rounded-lg shadow-lg"
-        src="https://m.media-amazon.com/images/I/41Bb+OxfMUL.png"
+        src={LOGO}
         alt="Logo"
       />
       {user && (

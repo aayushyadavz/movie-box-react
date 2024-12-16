@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_IMAGE } from "../utils/constants";
 
 const Login = () => {
   const [isSignUpForm, setIsSignInForm] = useState(false);
@@ -111,7 +112,7 @@ const Login = () => {
       <Header />
       <div className="relative h-screen">
         <img
-          src="https://www.plex.tv/wp-content/uploads/2024/01/Watch-Free-Hero-2048x1152-3.png?cache-bypass=true"
+          src={BG_IMAGE}
           alt="Home page background images"
           className="w-full h-full object-cover"
         />
