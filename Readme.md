@@ -36,6 +36,8 @@
      - This API is triggered automatically whenever the authentication state changes (e.g., sign-in, sign-up, sign-out).
      - Acts like an event listener and can be used at the root level of the app for global authentication management.
 
+     - Unsubscribing: The `onAuthStateChanged` method returns an unsubscribe function. The return () => unsubscribe(); line ensures that the subscription is properly cleaned up when the component is no longer in use, avoiding memory leaks or duplicate listeners.
+
    - `signOut`:
 
      - Used to log out the currently authenticated user.

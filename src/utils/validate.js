@@ -10,7 +10,7 @@ export const checkValidation = (name, email, password) => {
   }
 
   if (password !== null) {
-    const isPasswordValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(
+    const isPasswordValid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@]{8,}$/.test(
       password
     );
     return isPasswordValid
