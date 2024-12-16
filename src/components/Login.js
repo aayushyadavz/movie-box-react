@@ -122,7 +122,7 @@ const Login = () => {
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-1/2 md:w-1/4 bg-black bg-opacity-70 p-5 sm:py-10 sm:px-9 md:p-8 rounded-lg shadow-lg"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 md:w-2/5 lg:w-1/4 bg-black bg-opacity-70 p-5 sm:py-10 sm:px-9 md:p-8 rounded-lg shadow-lg"
       >
         <h1 className="text-2xl font-extrabold mb-4 text-white">
           {!isSignUpForm ? "Sign In" : "Sign Up"}
