@@ -27,21 +27,26 @@ const Login = () => {
   const passwordRef = useRef(null);
 
   const handleButtonClick = () => {
+    const nameError = isSignUpForm
+      ? checkValidation(nameRef.current.value, null, null) // nameRef.current refers to the input DOM element, and .value provides the current value of that input box.
+      : "";
+    const emailError = checkValidation(null, emailRef.current.value, null);
+    const passwordError = checkValidation(
+      null,
+      null,
+      passwordRef.current.value
+    );
+
     setErrorMessage({
-      name: isSignUpForm
-        ? checkValidation(nameRef.current.value, null, null) // nameRef.current refers to the input DOM element, and .value provides the current value of that input box.
-        : "",
-      email: checkValidation(null, emailRef.current.value, null),
-      password: checkValidation(null, null, passwordRef.current.value),
+      name: nameError,
+      email: emailError,
+      password: passwordError,
     });
 
-    if (
-      // if errormessage contains some strings then return, else proceed
-      errorMessage.name !== "" ||
-      errorMessage.email !== "" ||
-      errorMessage.password !== ""
-    )
+    // if errormessage contains some strings then return, else proceed
+    if (nameError || emailError || passwordError) {
       return;
+    }
 
     if (isSignUpForm) {
       // if there is Sign Up form
