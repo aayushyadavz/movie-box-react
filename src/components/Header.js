@@ -15,35 +15,39 @@ const Header = () => {
   const handleSignout = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful
+        // Sign-out successful.
       })
       .catch((error) => {
+        // An error happened.
         console.error("Error during sign-out:", error);
       });
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
-      if (authUser) {
+    // Placing this logic here because the header component is rendered throughout the app
+    // This allows tracking of authentication state changes globally
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
         // User is signed in
-        const { displayName, email, uid } = authUser;
-        dispatch(addUser({ displayName, email, uid }));
-        navigate("/browse"); // Navigate to the browse page
+        const { displayName, email, uid } = user;
+        dispatch(addUser({ displayName: displayName, email: email, uid: uid }));
+        navigate("/browse"); // Sign In - navigate to browse page
       } else {
         // User is signed out
         dispatch(removeUser());
-        navigate("/"); // Navigate to the login page
+        navigate("/"); // Sign Out - navigate to login page
       }
       setIsAuthChecked(true); // Auth state has been checked
     });
 
-    return () => unsubscribe(); // Cleanup subscription
+    // Unsubscribing, when this component unmounts
+    return () => unsubscribe();
     // eslint-disable-next-line
-  }, []);
+  }, []); // Calling this API only once
 
   // Prevent rendering until auth state is verified
   if (!isAuthChecked) {
-    return null; // Or a loader if preferred
+    return null;
   }
 
   return (
@@ -72,3 +76,16 @@ const Header = () => {
 };
 
 export default Header;
+
+// Bug Fix:
+/* 
+Issue: User info displayed incorrectly on other devices.
+
+Fix:
+- Wait for Firebase to confirm auth status (isAuthChecked).
+- Show user info only when logged in.
+- Clear Redux state on logout.
+- Prevent rendering until auth check completes.
+
+Outcome: User info now displays correctly. 
+*/
