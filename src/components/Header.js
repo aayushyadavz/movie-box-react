@@ -59,8 +59,8 @@ const Header = () => {
       />
       {user && user.displayName && (
         <div className="flex items-center">
-          <p className="mx-5 text-sm font-semibold">
-            <i className="fa-solid fa-user-check mr-2 text-black text-lg"></i>
+          <p className="mx-5 text-xs font-medium text-white">
+            <i className="fa-solid fa-user-check mr-2 text-white text-base"></i>
             {user.displayName}
           </p>
           <button
