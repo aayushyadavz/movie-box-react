@@ -44,3 +44,26 @@
 
    - `updateProfile`:
      - Allows updating the user's profile information, such as display name and profile picture.
+
+#### Some Later on Bug Fixes:
+
+1. Issue: User info displayed incorrectly on other devices.
+
+Fix:
+
+- Wait for Firebase to confirm auth status (isAuthChecked).
+- Show user info only when logged in.
+- Clear Redux state on logout.
+- Prevent rendering until auth check completes.
+
+Outcome: User info now displays correctly.
+
+2. Issue: User not redirected to browse page after correcting errors during sign-up.
+
+Fix:
+
+- Reset error messages before initiating sign-up/sign-in actions.
+- Ensure state is updated before redirecting.
+- Correct validation flow to avoid conflicts.
+
+Outcome: User is now redirected to the browse page after successful sign-up.

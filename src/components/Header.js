@@ -76,16 +76,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// Bug Fix:
-/* 
-Issue: User info displayed incorrectly on other devices.
-
-Fix:
-- Wait for Firebase to confirm auth status (isAuthChecked).
-- Show user info only when logged in.
-- Clear Redux state on logout.
-- Prevent rendering until auth check completes.
-
-Outcome: User info now displays correctly. 
-*/
