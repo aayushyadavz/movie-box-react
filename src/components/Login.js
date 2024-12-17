@@ -7,7 +7,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BG_IMAGE } from "../utils/constants";
@@ -21,7 +20,6 @@ const Login = () => {
     signUp: "",
     signIn: "",
   });
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const nameRef = useRef(null);
@@ -90,6 +88,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
+          /* eslint-disable-next-line no-unused-vars */
           const user = userCredential.user;
         })
         .catch((error) => {
