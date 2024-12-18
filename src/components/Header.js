@@ -51,7 +51,13 @@ const Header = () => {
   }
 
   return (
-    <div className="flex justify-between absolute w-full px-3 sm:px-5 z-10 py-2 font-parkinsans">
+    <div
+      className="flex justify-between absolute w-full px-3 sm:px-5 z-10 py-2 font-parkinsans"
+      style={{
+        backgroundColor:
+          user && user.displayName ? "rgba(0, 0, 0, 0.5)" : "transparent",
+      }}
+    >
       <img
         className="w-14 sm:w-20 md:w-16 rounded-lg shadow-lg"
         src={LOGO}

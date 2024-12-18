@@ -5,13 +5,50 @@
 @tailwind utilities;
 
 @layer utilities {
-  .line-clamp-2 {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  body {
+    @apply overflow-y-scroll;
+  }
+
+  body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: gray;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: rgba(252, 211, 77, 1); 
+    border-radius: 8px;
+  }
+
+  .line-clamp-1 {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .bg-color {
     background-color: #021526;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(252, 211, 77, 1); 
+    border-radius: 8px;
+  }  
 }
