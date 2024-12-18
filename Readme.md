@@ -67,3 +67,19 @@ Fix:
 - Correct validation flow to avoid conflicts.
 
 Outcome: User is now redirected to the browse page after successful sign-up.
+
+3. Issue: "Page not found" (404 error) occurs when refreshing or directly accessing routes (e.g., /browse) in a Netlify-deployed React app.
+
+Fix:
+
+- Added a netlify.toml file in the root directory.
+- Configured Netlify to redirect all routes to index.html using the following rule
+
+```bash
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+Outcome: All routes now correctly serve index.html, and React Router handles routing without showing a 404 error. Refreshing or directly visiting any route works seamlessly.
