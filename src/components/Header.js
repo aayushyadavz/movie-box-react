@@ -52,26 +52,26 @@ const Header = () => {
 
   return (
     <div
-      className="flex justify-between absolute w-full px-3 sm:px-5 z-10 py-2 font-parkinsans"
+      className="flex justify-between absolute w-full px-2 sm:px-5 z-10 py-2 font-parkinsans"
       style={{
         backgroundColor:
           user && user.displayName ? "rgba(0, 0, 0, 0.5)" : "transparent",
       }}
     >
       <img
-        className="w-14 sm:w-20 md:w-16 rounded-lg shadow-lg"
+        className="w-10 sm:w-20 md:w-16 rounded-lg shadow-lg"
         src={LOGO}
         alt="Logo"
       />
       {user && user.displayName && (
         <div className="flex items-center">
-          <p className="mx-5 text-xs font-medium text-white">
-            <i className="fa-solid fa-user-check mr-2 text-white text-base"></i>
+          <p className="mx-4 sm:mx-5 text-[9px] sm:text-xs font-medium text-white">
+            <i className="fa-solid fa-user-check mr-1 sm:mr-2 text-white text-xs sm:text-base"></i>
             {user.displayName}
           </p>
           <button
             onClick={handleSignout}
-            className="bg-yellow-300 text-black p-2 rounded font-bold text-sm mx-5 px-3 shadow-md"
+            className="bg-yellow-300 text-black p-[5px] sm:p-2 rounded font-bold text-xs sm:text-sm mr-2 sm:mx-5 px-[7px] sm:px-3 shadow-md transition transform active:scale-95"
           >
             Sign Out
           </button>

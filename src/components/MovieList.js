@@ -7,11 +7,11 @@ const MovieList = ({ title, movies }) => {
   return (
     movies && (
       <div>
-        <h1 className="text-yellow-300 font-semibold px-5 pt-6 pb-0">
+        <h1 className="text-xs sm:text-base text-yellow-300 font-semibold px-5 sm:pt-6 pt-3 pb-0">
           {title} ({movies.length})
         </h1>
         <div className="flex overflow-x-scroll custom-scrollbar">
-          <div className="flex gap-3 px-5 py-8">
+          <div className="flex gap-3 px-5 py-4 sm:py-7 md:py-8">
             {movies?.map((movie) =>
               title === "Top Rated" ? (
                 <MovieCardWithRating
@@ -25,6 +25,7 @@ const MovieList = ({ title, movies }) => {
                 <MovieCard
                   key={movie.id}
                   name={movie.title}
+                  date={movie.release_date}
                   poster={movie.poster_path}
                 />
               )

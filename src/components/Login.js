@@ -162,7 +162,7 @@ const Login = () => {
         </p>
         <button
           onClick={handleButtonClick}
-          className="block w-full bg-yellow-300 text-black p-2 mb-4 rounded font-bold"
+          className="block w-full bg-yellow-300 text-black p-2 mb-4 rounded font-bold transition transform active:scale-95"
         >
           {isSignUpForm ? "Sign Up" : "Sign In"}
         </button>

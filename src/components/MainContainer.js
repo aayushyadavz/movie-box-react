@@ -13,15 +13,15 @@ const MainContainer = () => {
 
   const { original_title, overview, release_date, id } = mainMovie;
   return (
-    <div className="flex w-screen">
-      <div className="w-1/2 bg-gradient-to-b from-black">
+    <div className="flex flex-col md:flex-row w-screen">
+      <div className="md:w-1/2 bg-gradient-to-b from-black">
         <VideoTitle
           title={original_title}
           overview={overview}
           releaseDate={release_date}
         />
       </div>
-      <div className="w-1/2 bg-gradient-to-b from-black">
+      <div className="md:w-1/2 md:bg-gradient-to-b from-black">
         <VideoBackground movieId={id} />
       </div>
     </div>
