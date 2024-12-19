@@ -17,4 +17,22 @@ const MovieCard = ({ name, poster, date }) => {
   );
 };
 
+// Higher Order Component
+const withRatingLabel = (MovieCard) => {
+  return (props) => {
+    const { rating } = props;
+
+    return (
+      <div className="relative">
+        <label className="absolute top-0 m-2 bg-black bg-opacity-50 rounded text-white px-1 shadow-md">
+          <i className="fa-solid fa-star mr-1 text-yellow-300"></i>
+          {rating.toFixed(1)}
+        </label>
+        <MovieCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default MovieCard;
+export { withRatingLabel };
