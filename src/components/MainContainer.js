@@ -13,7 +13,7 @@ const MainContainer = () => {
 
   const { original_title, overview, release_date, id } = mainMovie;
   return (
-    <div className="flex w-screen bg-color">
+    <div className="flex w-screen">
       <div className="w-1/2 bg-gradient-to-b from-black">
         <VideoTitle
           title={original_title}
